@@ -49,7 +49,7 @@ EL1 = -15; % [mV] leak reversal potential (spike-initiation zone)
 EL2 = 0; % [mV] leak reversal potential (soma)
 
 % Na/K-pump current parameters
-Imax = 0; % [uA] max pump current (=800[pA])
+Imax = 800e-6; % [uA] max pump current (=800[pA])
 kIN = 10 * 0.06e-6; % conversion factor from INa into [Na] [mM/pA.ms]
 kIP =  2 * 0.06e-6; % conversion factor from Ipump into [Na] [mM/pA.ms]
 
