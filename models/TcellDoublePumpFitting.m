@@ -1,4 +1,4 @@
-function [V1,V2] = TcellDoublePump(Iinj, dt, pA, sim20)
+function [V1,V2] = TcellDoublePumpFitting(Iinj, dt, pA, sim20)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Two-compartment leech T cell model with transient Na, 
 % high-voltage-activated K and slow M-type K current and a Na+/K+ pump.
@@ -9,8 +9,10 @@ function [V1,V2] = TcellDoublePump(Iinj, dt, pA, sim20)
 % +++ input
 %  Iinj : vector for injected current input into somatic compartment [pA]
 %  dt : time step [ms]
-%  pA: vector holding a value for: [EK,EL1,EL2,GL1,GL2,GM,Gc,ENa,gNa,gK]
-%         in that order!
+%  pA: vector holding a value for: 
+%       - Imax [uA]             standard = 800e-6
+%       - kIN [Na] [mM/pA.ms]   standard = 10 * 0.06e-6
+%       - kIP [Na] [mM/pA.ms]   standard = 2 * 0.06e-6
 %  sim20: flag for the simulation of the 20th trial, inh. current is
 %  applied if set to true
 % +++ output
@@ -29,10 +31,6 @@ function [V1,V2] = TcellDoublePump(Iinj, dt, pA, sim20)
 % S2 = 2*rSIZ*pi*(rSIZ+hSIZ); % [um^2] surface area of the SIZ
 S1 = 5000; %[um^2] surface area of the somatic membrane
 S2 = 500; % [um^2] surface area of the SIZ
-
-
-% Gc = Gc; % conductance between compartments
-
 
 % capacitances
 Cm = 1.0;  % [uF/cm^2] membrane capacitance density 
@@ -53,9 +51,9 @@ EL1 = -15; % [mV] leak reversal potential (spike-initiation zone)
 EL2 = 0; % [mV] leak reversal potential (soma)
 
 % Na/K-pump current parameters
-Imax = 0; % [uA] max pump current (=800[pA])
-kIN = 10 * 0.06e-6; % conversion factor from INa into [Na] [mM/pA.ms]
-kIP =  2 * 0.06e-6; % conversion factor from Ipump into [Na] [mM/pA.ms]
+Imax = pA(1); % [uA] max pump current (=800[pA])
+kIN  = pA(2); % conversion factor from INa into [Na] [mM/pA.ms]
+kIP  = pA(3); % conversion factor from Ipump into [Na] [mM/pA.ms]
 
 % conductances 
 gN = GN * S2 * 1e-8; % [mS] Na conductance of spike-initiation zone
@@ -63,12 +61,12 @@ gK = GK * S2 * 1e-8; % [mS] K conductance of spike-initiation zone
 gM = GM * S2 * 1e-8; % [mS] M-type K conductance of spike-initiation zone
 gL2= GL2* S2 * 1e-8; % [mS] leak conductance of spike-initiation zone
 gL1= GL1 * S1 * 1e-8; % [mS] leak conductance of somatic compartment
-gC = pA(7) * 1e-6; % [mS] conductance between the two compartments
+gC = 90 * 1e-6; % [mS] conductance between the two compartments
 
 % activation and inactivation of KM
-v0 = pA(8);
-vk = pA(9);
-TM = pA(10);
+v0 = 37;
+vk = 4;
+TM = 350;
 
 % activation and inactivation of Na
 v0Na = 20;
