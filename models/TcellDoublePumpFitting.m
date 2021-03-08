@@ -1,11 +1,11 @@
 function [V1,V2] = TcellDoublePumpFitting(Iinj, dt, pA, sim20)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% two compartment model of a leech T cell
 % Two-compartment leech T cell model with transient Na, 
 % high-voltage-activated K and slow M-type K current and a Na+/K+ pump.
 % Written by Kevin Sandbote (kevin.sandbote@uni-oldenburg.de)
 % Version 0.1
 % March 2021
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % +++ input
 %  Iinj : vector for injected current input into somatic compartment [pA]
 %  dt : time step [ms]

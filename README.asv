@@ -1,0 +1,7 @@
+# two_comp_pump
+two compatment model of the leech t cell with cell intrinsic plasticity
+
+# Setup
+Safe the folder "two_comp_pump" on your computer. Change the path in line 
+10 of "model_demo_sc.m" or in line 2 of "model_demo.mlx" to the corresponding
+path on your system. 

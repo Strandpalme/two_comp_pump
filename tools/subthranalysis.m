@@ -2,24 +2,22 @@ function [subthrFeatureVals] = subthranalysis(V)
 %% subthrFeatureVals = subthranalysis(V1) returns a struct array of response features
 % This function analyzes sub-threshold response fetaures of the voltage 
 % trace V1 and returns a struct array of feature values.
-% Input:
+% written by Kevin Sandbote
+% march 2021
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% +++Input:
 %       V  
 %           voltage trace of a neuronal response to the stimulus used in
 %           Meiser2019.
 %
-% Output:
+% +++Output:
 %       responseFetaures    
-%           struct-array that holds a response feature value for the
-%           corresponding field. 
-%           Fields are: 
-%           .restpot    resting potential
-%           .inpres     input resistance
-%           .vlotsag    voltage sag
-%           .spontact   spontanious activity
-
-
-% written by Kevin Sandbote
-% march 2021
+%           array that holds a response feature value for following 
+%           features: 
+%           1. restpot    resting potential
+%           2. inpres     input resistance
+%           3. vlotsag    voltage sag
+%           4. spontact   spontanious activity
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -48,7 +46,7 @@ spontact = length(findpeaks(V(IDXspont(1) : IDXspont(2)),...
 
 
 %% assining values to output struct
-subthrFeatureVals.restpot   = restpot;
-subthrFeatureVals.inpres    = inpres;
-subthrFeatureVals.voltsag   = voltsag;
-subthrFeatureVals.spontact  = spontact;
+subthrFeatureVals(1)   = restpot;
+subthrFeatureVals(2)   = inpres;
+subthrFeatureVals(3)   = voltsag;
+subthrFeatureVals(4)   = spontact;

@@ -1,24 +1,25 @@
 # two_comp_pump
 two compatment model of the leech t cell with cell intrinsic plasticity
 
-This model of the leech t cell is based on the model from my master thesis "Single- and Multi-Compartment Models of Cell Intrinsic Plasticity in Leech Neurons".
-Response features that are explained by the model:
-1. resting potential in trial 1
-2. input resistance in trial 1 
-3. change of input resistance over trials [delta R]
-4. resting potential in trial 20
-5. input resistance in trial 20
-6. no spontaneous activity
-7. number of spikes 1 nA
-8. spike height 3rd spike
-9. difference of amplitude between the 2nd and 3rd
-10. voltage sag during hyperpolarization
-11. number of spikes 0.5 nA
-12. number of spikes 1.5 nA
+# Setup
+Safe the folder "two_comp_pump" on your computer. Change the path in line 
+10 of "model_demo_sc.m" or in line 2 of "model_demo.mlx" to the corresponding
+path on your system. 
 
+# Models
+Two versions of the two compartment model can be found in the "models" 
+directory. 
+    - TcellDoublePump.m     
+                            This is the model as it was used in my master
+                            thesis. It's a good idea to keep it unchanged 
+                            as a reference.
 
-By adding and fitting the pump activityover trials, the following features should be explained in addition:
+    - TcellDoublePumpFitting.m
+                            This version of the model gets an array of pump
+                            parameter values to change properties of the
+                            Na+/K+ pump. This is included as an example how
+                            parameters can be changed in the model.
 
-1. resting potential for all trials between 1 and 20
-2. input resistance for all trials between 1 and 20
-3. Spike counts for 1 nA for all trieals between 1 and 20
+# tools
+This directory includes two basic analysis scripts, based on the analysis
+in my master thesis. They are added to the MATLAB path in both demo scripts.

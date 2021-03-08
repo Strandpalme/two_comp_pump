@@ -2,24 +2,23 @@ function [spikeFeatureVals] = spikeanalysis(V)
 %% spikeFeatureVals = spikeanalysis(V1) returns a struct array of response features
 % This function analyzes spike response fetaures of the voltage trace V1 
 % and returns a struct array of feature values.
-% Input:
+% written by Kevin Sandbote
+% march 2021
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% +++Input:
 %       V1  
 %           voltage trace of a neuronal response to the stimulus used in
 %           Meiser2019.
 %
-% Output:
+% +++Output:
 %       responseFetaures    
-%           struct-array that holds a response feature value for the
-%           corresponding field. 
-%           Fields are: 
-%           .sc1nA      spike count 1 nA
-%           .amp3rd     amplitude of 3rd spike
-%           .diff2to4   amp. diff. between spike 2 and 4
-%           .sc05nA     spike count 0.5 nA
-%           .sc15nA     spike count 1.5 nA
-
-% written by Kevin Sandbote
-% march 2021
+%           array that holds a response feature value for the corresponding
+%           spike features:
+%           1. sc1nA      spike count 1 nA
+%           2. amp3rd     amplitude of 3rd spike
+%           3. diff2to4   amp. diff. between spike 2 and 4
+%           4. sc05nA     spike count 0.5 nA
+%           5. sc15nA     spike count 1.5 nA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -71,7 +70,7 @@ if sc1nA >= 4
         diff2to4 = NaN;
     end
     
-elseif nSpikes1nA == 3
+elseif sc1nA == 3
     % when three spikes are detected, amplitude of the 3rd spike can be
     % calculated, but not the difference...
     negpeak1nA =  -findpeaks(-curstep1,'MinPeakProminence',1);
@@ -104,8 +103,8 @@ sc15nA = length(peak15nA);
 
 
 %% assining return values
-spikeFeatureVals.sc1nA    = sc1nA;
-spikeFeatureVals.amp3rd   = amp3rd;
-spikeFeatureVals.diff2to4 = diff2to4;
-spikeFeatureVals.sc05nA   = sc05nA;
-spikeFeatureVals.sc15nA   = sc15nA;
+spikeFeatureVals(1)   = sc1nA;
+spikeFeatureVals(2)   = amp3rd;
+spikeFeatureVals(3)   = diff2to4;
+spikeFeatureVals(4)   = sc05nA;
+spikeFeatureVals(5)   = sc15nA;
